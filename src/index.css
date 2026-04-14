@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink font-body text-cream antialiased;
+    margin: 0;
+    min-width: 320px;
+  }
+
+  ::selection {
+    background: rgba(225, 176, 109, 0.28);
+    color: #f6efe5;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-space {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  .glass-panel {
+    @apply border border-white/10 bg-white/5 backdrop-blur-2xl shadow-glass;
+  }
+}
+
+.ambient-layer {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(225, 176, 109, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 22%, rgba(122, 88, 64, 0.22), transparent 26%),
+    radial-gradient(circle at 52% 75%, rgba(185, 151, 115, 0.08), transparent 24%),
+    linear-gradient(180deg, #171210 0%, #120f0d 35%, #110d0b 100%);
+}
+
+.grain-overlay {
+  opacity: 0.2;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.05) 0.6px, transparent 0.6px),
+    radial-gradient(rgba(255, 255, 255, 0.035) 0.5px, transparent 0.5px);
+  background-position: 0 0, 14px 14px;
+  background-size: 18px 18px, 22px 22px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 92%);
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.text-shadow-soft {
+  text-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+}
+
+.weather-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+  overflow: hidden;
+}
+
+.weather-overlay--snow {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%);
+}
+
+.weather-overlay--rain {
+  background:
+    linear-gradient(180deg, rgba(132, 165, 201, 0.16), transparent 28%),
+    radial-gradient(circle at top, rgba(173, 209, 246, 0.1), transparent 42%);
+}
+
+.weather-overlay--autumn {
+  background: linear-gradient(180deg, rgba(184, 121, 62, 0.08), transparent 28%);
+}
+
+.weather-particle {
+  position: absolute;
+  top: -12%;
+  display: block;
+}
+
+.weather-particle--snow {
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.34) 72%, transparent 100%);
+  filter: blur(0.2px);
+  animation-name: snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.weather-particle--rain {
+  background: linear-gradient(180deg, rgba(233, 244, 255, 0.98), rgba(181, 213, 246, 0.18));
+  box-shadow: 0 0 8px rgba(195, 225, 255, 0.22);
+  transform: rotate(12deg);
+  animation-name: rainfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.weather-particle--autumn {
+  border-radius: 80% 0 80% 0;
+  background: linear-gradient(180deg, rgba(243, 191, 112, 0.96), rgba(184, 92, 44, 0.9));
+  box-shadow: 0 0 12px rgba(184, 92, 44, 0.16);
+  transform: rotate(18deg);
+  animation-name: leafFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(0, -10%, 0) scale(0.92);
+  }
+
+  100% {
+    transform: translate3d(32px, 120vh, 0) scale(1.06);
+  }
+}
+
+@keyframes rainfall {
+  0% {
+    transform: translate3d(0, -16%, 0) rotate(12deg);
+  }
+
+  100% {
+    transform: translate3d(-40px, 120vh, 0) rotate(12deg);
+  }
+}
+
+@keyframes leafFall {
+  0% {
+    transform: translate3d(0, -12%, 0) rotate(18deg);
+  }
+
+  35% {
+    transform: translate3d(22px, 36vh, 0) rotate(96deg);
+  }
+
+  70% {
+    transform: translate3d(-18px, 72vh, 0) rotate(182deg);
+  }
+
+  100% {
+    transform: translate3d(26px, 118vh, 0) rotate(260deg);
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #120f0d;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  border: 2px solid #120f0d;
+  background: linear-gradient(180deg, rgba(225, 176, 109, 0.75), rgba(122, 88, 64, 0.8));
+}
